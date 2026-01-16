@@ -19,14 +19,12 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
 
-      - run: |
-          echo "NODE_AUTH_TOKEN is: ${NODE_AUTH_TOKEN:+SET}"
-          rm -f ~/.npmrc .npmrc || true
-
       - run: npm ci || npm install
 
       - run: |
-          npm config get userconfig
-          npm config list -l | sed -n '1,120p'
+          rm -f ~/.npmrc .npmrc || true
+          npm config delete //registry.npmjs.org/:_authToken || true
+
+      - run: env -u NODE_AUTH_TOKEN npm publish --access public
 
       - run: npm publish --access public
