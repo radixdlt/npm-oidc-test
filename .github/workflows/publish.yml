@@ -19,6 +19,10 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
 
+      - run: |
+          echo "NODE_AUTH_TOKEN is: ${NODE_AUTH_TOKEN:+SET}"
+          rm -f ~/.npmrc .npmrc || true
+
       - run: npm ci || npm install
 
       - run: |
