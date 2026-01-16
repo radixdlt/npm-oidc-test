@@ -25,6 +25,5 @@ jobs:
           rm -f ~/.npmrc .npmrc || true
           npm config delete //registry.npmjs.org/:_authToken || true
 
-      - run: env -u NODE_AUTH_TOKEN npm publish --access public
-
-      - run: npm publish --access public
+      - name: Publish (OIDC)
+        run: env -u NODE_AUTH_TOKEN -u NPM_CONFIG_USERCONFIG npm publish --access public
