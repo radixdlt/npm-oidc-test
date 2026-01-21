@@ -19,26 +19,26 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
 
-      # Trusted Publishing requires npm CLI >= 11.5.1
-      - name: Upgrade npm
-        run: npm i -g npm@^11.5.1
+      # # Trusted Publishing requires npm CLI >= 11.5.1
+      # - name: Upgrade npm
+      #   run: npm i -g npm@^11.5.1
 
-      - name: Show versions
-        run: |
-          node -v
-          npm -v
+      # - name: Show versions
+      #   run: |
+      #     node -v
+      #     npm -v
 
-      - name: Verify GitHub OIDC token is obtainable
-        run: |
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL is: ${ACTIONS_ID_TOKEN_REQUEST_URL:+SET}"
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+SET}"
+      # - name: Verify GitHub OIDC token is obtainable
+      #   run: |
+      #     echo "ACTIONS_ID_TOKEN_REQUEST_URL is: ${ACTIONS_ID_TOKEN_REQUEST_URL:+SET}"
+      #     echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+SET}"
 
-          # Request a token (requires id-token: write)
-          curl -sSf \
-            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=npm" \
-            | head -c 200
-          echo
+      #     # Request a token (requires id-token: write)
+      #     curl -sSf \
+      #       -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+      #       "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=npm" \
+      #       | head -c 200
+      #     echo
 
       - run: npm ci
 
