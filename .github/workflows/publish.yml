@@ -20,8 +20,8 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       # # Trusted Publishing requires npm CLI >= 11.5.1
-      # - name: Upgrade npm
-      #   run: npm i -g npm@^11.5.1
+      - name: Upgrade npm
+        run: npm i -g npm@^11.5.1
 
       # - name: Show versions
       #   run: |
